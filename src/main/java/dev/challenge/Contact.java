@@ -28,12 +28,28 @@ public class Contact {
     }
 
     public Contact(String name, String email, String phone) {
-        this.name = name;
-        this.emails = emails;
-        this.phones = phones;
+        this(name, phone);
+        if (null != email && !email.isEmpty() && !email.isBlank()) {
+            emails.add(email);
+        }
     }
 
     public String convertPhone(long phone) {
-        return "";
+        String phoneString = Long.toString(phone);
+        return "(" + phoneString.substring(0, 3) + ") " + phoneString.substring(3, 6) + "-" + phoneString.substring(6);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "name='" + name + '\'' +
+                ", emails=" + emails +
+                ", phones=" + phones +
+                '}';
+    }
+
 }
